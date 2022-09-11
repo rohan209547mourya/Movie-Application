@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+#poster {
+    display: flex;
+    background-color: rgb(4, 6, 51);
+    justify-content: space-evenly;
+    padding: 10px;
+    margin-top: 2px;
+}
+
+#sec-1-poster {
+    width: 75%;
+}
+
+#sec-1-poster>div:nth-child(2) {
+    display: flex;
+}
+
+#title {
+    padding: 20px;
+    font-size: 3rem;
+}
+
+#info {
+    margin-bottom: 20px;
+}
+
+
+#poster-img {
+    margin-top: 30px;
+    text-align: center;
+}
+
+#poster-img+div {
+    padding: 40px;
+    margin-right: 100px;
+}
+
+.hl {
+    width: 100%;
+    margin: auto;
+    height: 1px;
+    background-color: rgb(47, 149, 233);
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+
+#info-2,
+#brife,
+#actor {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    font-weight: 600;
+}
+
+#sec-2-poster {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#sec-2-poster>div>button {
+    background-color: rgb(232, 194, 59);
+    color: black;
+    padding: 10px 60px 10px 60px;
+    border-radius: 10px;
+    font-weight: 600;
+    margin-top: 20px;
+}
+
+#sec-2-poster>div>button:hover {
+    cursor: pointer;
+}
+
+
+.hl-1 {
+    margin-top: 20px;
+}
+
+.hl-1+h1 {
+    padding: 20px;
+}
+
+#error {
+    text-align: center;
+}
+
+#error>img {
+    width: 60%;
+}
+
+
+#related-2 {
+    width: 80%;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    margin-top: 40px;
+}
+
+#related-2>div {
+    text-align: center;
+    padding: 20px;
+    background-color: rgb(8, 18, 74);
+    border-radius: 20px;
+}
+
+#related-2>div>h3 {
+    padding: 20px;
+}
+
+#related-1 {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#related-1>div>button {
+    background-color: rgb(232, 194, 59);
+    color: black;
+    padding: 10px 60px 10px 60px;
+    border-radius: 10px;
+    font-weight: 600;
+    margin-top: 20px;
+}
+
+#related-1>div>button:hover {
+    cursor: pointer;
+}

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="styles/index.css">
+</head>
+
+<body>
+    <nav>
+        <div>
+            <img src="https://secure-media.hotstarext.com/web-assets/prod/images/brand-logos/disney-hotstar-logo-dark.svg"
+                alt="">
+        </div>
+        <div id="navigation">
+            <div >
+                <form id="searchIcon">
+                    <input type="text" placeholder="Search..." id="searchBar" oninput="debounce()">
+                </form>
+                <div id="queryResult">
+
+                </div>
+            </div>
+            <span><i class="fa-solid fa-magnifying-glass"></i></span>
+        </div>
+        <ul>
+            <a href="index.html">
+                <li>Home</li>
+            </a>
+            <a href="login.html">
+                <li>Log In</li>
+            </a>
+            <a href="signup.html">
+                <li>Sign Up</li>
+            </a>
+            <a href="trending.html">
+                <li>Trending</li>
+            </a>
+        </ul>
+    </nav>
+    <div id="slideshow">
+        <!--Show Slideshow here-->
+        <img src="https://img1.hotstarext.com/image/upload/f_auto,t_web_m_1x/sources/r1/cms/prod/691/1280691-h-713b5907ee42"
+            id="slideShowImg" alt="">
+        <div style="display: flex;">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+
+    </div>
+    <div class="line"></div>
+    <div id="sort-buttons">
+        <!--Add sorting here-->
+        <p>Sort By Year: </p>
+        <button id="sort-hl">High To Low</button>
+        <button id="sort-lh">Low To High</button>
+    </div>
+    <div class="line"></div>
+    <div id="movies">
+        <!--Show list of movies here-->
+    </div>
+</body>
+
+</html>
+
+<script src="./scripts/index.js"></script>

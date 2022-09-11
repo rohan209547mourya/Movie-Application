@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie</title>
+    <link rel="stylesheet" href="./styles/index.css">
+    <link rel="stylesheet" href="./styles/movies.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <nav>
+        <div>
+            <img src="https://secure-media.hotstarext.com/web-assets/prod/images/brand-logos/disney-hotstar-logo-dark.svg"
+                alt="">
+        </div>
+        <div id="navigation">
+            <div>
+                <form id="searchIcon">
+                    <input type="text" placeholder="Search..." id="searchBar" oninput="debounce()">
+                </form>
+                <div id="queryResult">
+
+                </div>
+            </div>
+            <span><i class="fa-solid fa-magnifying-glass" id="searchIcon"></i></span>
+        </div>
+        <ul>
+            <a href="index.html">
+                <li>Home</li>
+            </a>
+            <a href="login.html">
+                <li>Log In</li>
+            </a>
+            <a href="signup.html">
+                <li>Sign Up</li>
+            </a>
+            <a href="trending.html">
+                <li>Trending</li>
+            </a>
+        </ul>
+    </nav>
+    <section id="poster">
+        <div id="sec-1-poster">
+            <div>
+                <p id="recommend"></p>
+                <h1 id="title"></h1>
+                <span id="info"></span>
+            </div>
+            <div>
+                <div id="poster-img"></div>
+                <div>
+                    <span id="info-2"></span>
+                    <div class="hl"></div>
+                    <p id="brife"></p>
+                    <div class="hl"></div>
+                    <p id="actor"></p>
+                    <div class="hl"></div>
+                </div>
+            </div>
+        </div>
+        <div id="sec-2-poster">
+            <div>
+                <h3 id="rating"></h3>
+                <button>Watch on Prime Video</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="related">
+        <div>
+            <div class="hl hl-1"></div>
+            <div id="related-1">
+                <div>
+                    <h1>Recommend Movies > </h1>
+                </div>
+                <div>
+                    <button id="sort-hl">High To Low</button>
+                    <button id="sort-lh">Low To High</button>
+                </div>
+            </div>
+            <div class="hl hl-1"></div>
+        </div>
+        <div id="related-2">
+
+        </div>
+    </section>
+
+    <section id="error">
+    </section>
+</body>
+
+</html>
+<script>
+
+
+
+    document.getElementById("searchIcon").addEventListener("submit", movies);
+    let localMovie = localStorage.getItem("localMovie");
+
+    function movies() {
+        event.preventDefault();
+        let searchValue = document.getElementById("searchBar").value;
+        localStorage.setItem("localMovie", searchValue.toLowerCase());
+        window.location.reload();
+    }
+
+    document.querySelector("title").innerText = `${localMovie.charAt(0).toUpperCase() + localMovie.substring(1)} - By Search`;
+
+    localMovie = localMovie.split(" ").join("+");
+
+    let url = fetch(`https://omdbapi.com/?i=tt3896198&apikey=c81998f&s=${localMovie}`);
+
+    let url2 = fetch(`https://omdbapi.com/?i=tt3896198&apikey=c81998f&t=${localMovie}`);
+
+    let sortingMethod;
+    url.then(function (res) {
+        let data = res.json();
+        data.then(function (result) {
+            if (result.Response == "False") {
+                document.getElementById("related").style.display = "none";
+                document.getElementById("poster").style.display = "none";
+                let img = document.createElement("img");
+                img.src = "error.png";
+                document.getElementById("error").append(img);
+            } else {
+                sortingMethod = result.Search;
+                multiMovie(result.Search)
+            }
+        })
+    })
+
+
+    url2.then(function (res) {
+        let data = res.json();
+        data.then(function (result) {
+            if (result.Response == "False") {
+                document.getElementById("poster").style.display = "none";
+                let img = document.createElement("img");
+                img.src = "error.png";
+                document.getElementById("error").append(img);
+            } else {
+                singleMove(result);
+            }
+        })
+    })
+
+    function singleMove(el) {
+        let recommend = document.getElementById("recommend");
+        if (el.imdbRating > 8.5) {
+            recommend.innerText = "#Recommend";
+        }
+
+        let title = document.getElementById("title");
+        title.innerText = el.Title;
+
+        let info = document.getElementById("info");
+        info.innerText = `${el.Type} - ${el.Year} - ${el.Writer} - ${el.Language} - ${el.Runtime}`;
+
+        let poster = document.getElementById("poster-img");
+        let img = document.createElement("img");
+        img.src = el.Poster;
+        poster.append(img);
+
+        let info_2 = document.getElementById("info-2");
+        info_2.innerText = el.Genre;
+
+        let brife = document.getElementById("brife");
+        brife.innerText = el.Plot;
+
+        let actor = document.getElementById("actor");
+        actor.innerText = el.Actors;
+
+        let rating = document.getElementById("rating");
+        rating.innerText = `Rating:-  ${el.imdbRating}`;
+    }
+
+
+
+    function multiMovie(data) {
+        document.getElementById("related-2").innerHTML = "";
+        data.forEach(function (el) {
+            let title = document.createElement("h3");
+            title.innerText = el.Title;
+
+            let year = document.createElement("p");
+            year.textContent = el.Year;
+
+            let image = document.createElement("div");
+            let img = document.createElement("img");
+            img.src = el.Poster;
+            img.alt = el.Title;
+
+            image.append(img);
+
+            let rating = document.createElement("p");
+            let rating_num = Math.floor(Math.random() * (10 - 1) + 1);
+            rating.innerText = `Rating:-  ${rating_num}`;
+
+            let div = document.createElement("div");
+
+            div.append(img, title, year, rating);
+            document.getElementById("related-2").append(div);
+        })
+    }
+
+
+
+
+    document.getElementById("sort-lh").addEventListener("click", sortBylh);
+
+    function sortBylh() {
+        let arr = sortingMethod.sort(function (a, b) {
+            return a.Year - b.Year;
+        });
+        multiMovie(arr);
+    }
+
+
+    document.getElementById("sort-hl").addEventListener("click", sortByhl);
+
+    function sortByhl() {
+        let arr = sortingMethod.sort(function (a, b) {
+            return b.Year - a.Year;
+        });
+        multiMovie(arr);
+    }
+
+</script>

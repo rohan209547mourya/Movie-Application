@@ -1,0 +1,55 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+nav {
+    display: flex;
+    justify-content: end;
+    background-color: rgb(225, 172, 74);
+}
+
+ul {
+    display: flex;
+    list-style: none;
+    margin-right: 10%;
+}
+
+a {
+    text-decoration: none;
+    padding: 20px;
+    font-weight: 900;
+    color: black;
+}
+
+a:visited {
+    color: black;
+}
+
+#login-form-div {
+    padding: 40px;
+    background-color: white;
+    width: 40%;
+    margin: auto;
+    text-align: center;
+    margin-top: 8%;
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 5px 5px;
+}
+
+#logInForm>input {
+    margin-bottom: 10px;
+    width: 50%;
+    padding: 10px;
+}
+
+#logInForm>input[type="submit"] {
+    width: 30%;
+    border-radius: 10px;
+    border: none;
+    background-color: teal;
+    font-weight: 900;
+    color: white;
+    box-shadow: rgba(13, 12, 12, 0.612) 0px 1px 4px;
+}
